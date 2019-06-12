@@ -38,6 +38,12 @@ variable "autoscaling" {
   description = "Parameters with which to implement autoscaling."
 }
 
+variable "target_size" {
+  type = number
+  default = 1
+  description = "Target size of instance group, when autoscaling is not in effect."
+}
+
 locals {
   autoscaling_metrics = [
     for item in var.autoscaling:
