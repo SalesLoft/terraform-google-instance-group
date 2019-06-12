@@ -37,3 +37,23 @@ variable "instance_template_link" {
   default = null
   description = "The link to the initial instance template to assign to the instance group. This is only used when creating the instance group."
 }
+
+variable "autoscaling" {
+  type = list
+  default = []
+  description = "Parameters with which to implement autoscaling."
+}
+
+locals {
+  autoscaling_metrics = [
+    for item in var.autoscaling:
+      item
+    if contains(keys(item), "metric")
+  ]
+
+  autoscaling_cpu = {
+    for item in var.autoscaling:
+      "cpu" => item
+    if contains(keys(item), "cpu")
+  }
+}
