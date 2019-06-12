@@ -8,10 +8,9 @@ variable "name" {
   description = "Name format to use when creating groups. {region} is replaced with the group's region."
 }
 
-variable "service_account_email" {
+variable "instance_template_link" {
   type = string
-  default = null
-  description = "Service account to assign to this instance group."
+  description = "Link to the instance template to assign to the instance group."
 }
 
 variable "min_replicas" {
@@ -22,21 +21,16 @@ variable "min_replicas" {
 
 variable "max_replicas" {
   type = number
-  default = 1
+  default = 3
   description = "Maximum number of instances to scale to (when autoscaling is enabled)."
 }
 
 variable "cooldown_period" {
   type = number
   default = 60
-  description = "The length of time (in seconds) each new instance is allowed to boot before fetching information from it."
+  description = "Length of time (in seconds) each new instance is allowed to boot before fetching information from it."
 }
 
-variable "instance_template_link" {
-  type = string
-  default = null
-  description = "The link to the initial instance template to assign to the instance group. This is only used when creating the instance group."
-}
 
 variable "autoscaling" {
   type = list
