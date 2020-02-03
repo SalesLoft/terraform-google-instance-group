@@ -5,6 +5,11 @@ resource google_compute_region_instance_group_manager manager {
   region = var.regions[count.index]
   instance_template = var.instance_template_link
   target_size = length(var.autoscaling) > 0 ? null : var.target_size
+
+  version {
+    name = var.instance_template_link
+    instance_template = var.instance_template_link
+  }
 }
 
 resource google_compute_region_autoscaler autoscaler {
